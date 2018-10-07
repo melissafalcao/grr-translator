@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Grr translator</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+ 
+<div id="textDiv"></div>
+<script type="text/javascript">
+
+alert('vitor sofiati')
+	
+	var entrada = "MELISSA CORREA"
+	var entrada = entrada.toLowerCase();
+	var saida = "G";
+	
+	//arrays base indices coincidem
+	var emGr = ["rrrrr", "rrrrR", "rrrRr", "rrrRR", "rrRrr", "rrRrR", "rrRRr", "rrRRR", "rRrrr", "rRrrR", "rRrRr", "rRrRR",
+	"rRRrr", "rRRrR", "rRRRr", "rRRRR", "Rrrrr", "RrrrR", "RrrRr", "RrrRR", "RrRrr", "RrRrR", "RrRRr", "RrRRR", "RRrrr", "RRrrR", "RRrRr"]
+	
+	var emNormal =  ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+	
+	//for pra percorrer string e comparar com o array do alfabeto
+	for (var i = 0; i < 1000; i++) { //o lenght nao ta funcionando n sei pq
+	
+	//se for espaço poe g + ' ' da nova palavra
+	if (entrada.charAt(i) === ' ') { 
+			saida = saida + " G";
+			}
+			
+		for (var j = 0; j < 26; j++) {
+			//compara os arrays a via convevrtendo pra grr
+			if (entrada.charAt(i) === emNormal[j]) {
+			saida = saida + emGr[j];
+			} else {
+			}
+		}
+	}
+	
+    var div = document.getElementById("textDiv");
+    div.textContent = saida;
+    var text = div.textContent;
+	
+	
+	
+
+</script>
+  </body>
+</html>
