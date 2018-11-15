@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Grr translator</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+ 
+<h2>NORMAL PARA GRR </h2>
+<form id="formulario">
+    <input type="text" id="campo">
+    <input type="submit" value="Enviar">
+</form>
+<div id="textDiv"></div>
+
+<p> </p><p> </p><p> </p>
+<h2>GRR PARA NORMAL </h2>
+<form id="formulariovolta">
+	<input type="text" id="campo2">
+	<input type="submit" value="Enviar">
+</form>
+<div id="imprimir2"></div>
+
+
+<script type="text/javascript">
+var form = document.getElementById('formulario');
+var campo = document.getElementById('campo');
+var entrada = "teste";
+
+form.addEventListener('submit', function(e) {
+    // alerta o valor do campo
+    entrada = (campo.value);
+		
+	
+	var entrada = entrada.toLowerCase();
+	var saida = "G";
+	
+	//arrays base indices coincidem
+	var emGr = ["rrrrr", "rrrrR", "rrrRr", "rrrRR", "rrRrr", "rrRrR", "rrRRr", "rrRRR", "rRrrr", "rRrrR", "rRrRr", "rRrRR",
+	"rRRrr", "rRRrR", "rRRRr", "rRRRR", "Rrrrr", "RrrrR", "RrrRr", "RrrRR", "RrRrr", "RrRrR", "RrRRr", "RrRRR", "RRrrr", "RRrrR", "RRrRr"]
+	
+	var emNormal =  ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+	
+	//for pra percorrer string e comparar com o array do alfabeto
+	for (var i = 0; i < 1000; i++) { //o lenght nao ta funcionando n sei pq
+	
+	//se for espaço poe g + ' ' da nova palavra
+	if (entrada.charAt(i) === ' ') { 
+			saida = saida + " G";
+			}
+			
+		for (var j = 0; j < 26; j++) {
+			//compara os arrays a via convevrtendo pra grr
+			if (entrada.charAt(i) === emNormal[j]) {
+			saida = saida + emGr[j];
+			} else {
+			}
+		}
+	}
+	
+    var div = document.getElementById("textDiv");
+    div.textContent = saida;
+    var text = div.textContent;
+	
+	    // impede o envio do form
+    e.preventDefault();
+});	
+
+// DE GR PRA NORMAL (A VOLTA)//
+	var form2 = document.getElementById('formulariovolta');
+	var campo2 = document.getElementById('campo2');
+	var entrada2 = "teste";
+	
+	form2.addEventListener('submit', function(e) {
+	
+	entrada2 = (campo2.value);
+	
+	var grrPraNormal = ""; // saida em normal dps de converter
+	var o = 0; //contador de em que parte da string eu to
+	var temporariacheck = ""; // quarto a cadeia de 5 caracteres aqui pra procurar no array (em grr)
+	
+	//arrays base indices coincidem
+	var emGr = ["rrrrr", "rrrrR", "rrrRr", "rrrRR", "rrRrr", "rrRrR", "rrRRr", "rrRRR", "rRrrr", "rRrrR", "rRrRr", "rRrRR",
+	"rRRrr", "rRRrR", "rRRRr", "rRRRR", "Rrrrr", "RrrrR", "RrrRr", "RrrRR", "RrRrr", "RrRrR", "RrRRr", "RrRRR", "RRrrr", "RRrrR", "RRrRr"]
+	
+	var emNormal =  ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+	
+	
+	for (var m = 0; m < 1000; m++) { 
+		if (entrada2.charAt(o) === 'G') {
+		o++;
+		} else if (entrada2.charAt(o) === ' ') {
+		 grrPraNormal += " ";
+		 o++;
+		} else if (entrada2.charAt(o) === 'r' || entrada2.charAt(o) === 'R') {
+		temporariacheck = "";
+		temporariacheck = entrada2.charAt(o) + entrada2.charAt(o + 1) + entrada2.charAt(o + 2) + entrada2.charAt(o + 3) + entrada2.charAt(o + 4);
+		
+				for (var j = 0; j < 26; j++) {
+			//compara os arrays a via convevrtendo pra normal
+			if (temporariacheck === emGr[j]) {
+			grrPraNormal = grrPraNormal  + emNormal[j];
+			} else {
+			}
+		}
+		
+		o+=5;
+		}
+	}
+
+	var abc = document.getElementById("imprimir2");
+	abc.textContent = grrPraNormal;
+	var cba = abc.textContent;
+	
+		    // impede o envio do form
+    e.preventDefault();
+});	
+
+
+
+	
+	
+	
+</script>
+  </body>
+</html>
